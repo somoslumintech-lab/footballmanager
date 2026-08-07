@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import com.footballmanager.game.ui.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -15,8 +15,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface {
-                    Text(
-                        text = "⚽ Football Manager"
+                    HomeScreen(
+                        onNewCareerClick = {
+                            // Vamos implementar a nova carreira depois.
+                        },
+                        onLoadGameClick = {
+                            // Vamos implementar o carregamento depois.
+                        }
                     )
                 }
             }
