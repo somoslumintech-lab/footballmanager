@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.footballmanager.game.data.BrazilianClubs
 import com.footballmanager.game.data.Club
+import com.footballmanager.game.ui.screens.ClubConfirmationScreen
 import com.footballmanager.game.ui.screens.ClubSelectionScreen
 import com.footballmanager.game.ui.screens.HomeScreen
 import com.footballmanager.game.ui.screens.NewCareerScreen
@@ -58,8 +59,28 @@ class MainActivity : ComponentActivity() {
                                 clubs = BrazilianClubs.clubs,
                                 onClubSelected = { club ->
                                     selectedClub = club
+                                    currentScreen = "club_confirmation"
                                 }
                             )
+                        }
+
+                        "club_confirmation" -> {
+
+                            selectedClub?.let { club ->
+
+                                ClubConfirmationScreen(
+                                    club = club,
+
+                                    onConfirmClick = {
+                                        // Próxima etapa:
+                                        // criação do treinador.
+                                    },
+
+                                    onBackClick = {
+                                        currentScreen = "club_selection"
+                                    }
+                                )
+                            }
                         }
                     }
                 }
