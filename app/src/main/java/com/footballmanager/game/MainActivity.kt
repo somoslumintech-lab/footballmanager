@@ -11,9 +11,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.footballmanager.game.data.BrazilianClubs
 import com.footballmanager.game.data.Club
+import com.footballmanager.game.data.Manager
 import com.footballmanager.game.ui.screens.ClubConfirmationScreen
 import com.footballmanager.game.ui.screens.ClubSelectionScreen
 import com.footballmanager.game.ui.screens.HomeScreen
+import com.footballmanager.game.ui.screens.ManagerCreationScreen
 import com.footballmanager.game.ui.screens.NewCareerScreen
 
 class MainActivity : ComponentActivity() {
@@ -31,6 +33,10 @@ class MainActivity : ComponentActivity() {
 
                     var selectedClub by remember {
                         mutableStateOf<Club?>(null)
+                    }
+
+                    var createdManager by remember {
+                        mutableStateOf<Manager?>(null)
                     }
 
                     when (currentScreen) {
@@ -72,8 +78,7 @@ class MainActivity : ComponentActivity() {
                                     club = club,
 
                                     onConfirmClick = {
-                                        // Próxima etapa:
-                                        // criação do treinador.
+                                        currentScreen = "manager_creation"
                                     },
 
                                     onBackClick = {
@@ -81,6 +86,18 @@ class MainActivity : ComponentActivity() {
                                     }
                                 )
                             }
+                        }
+
+                        "manager_creation" -> {
+
+                            ManagerCreationScreen(
+                                onContinueClick = { manager ->
+                                    createdManager = manager
+
+                                    // Próxima etapa:
+                                    // iniciar a carreira.
+                                }
+                            )
                         }
                     }
                 }
