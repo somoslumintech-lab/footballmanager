@@ -5,7 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.footballmanager.game.data.BrazilianClubs
+import com.footballmanager.game.data.Club
+import com.footballmanager.game.ui.screens.ClubSelectionScreen
 import com.footballmanager.game.ui.screens.HomeScreen
 import com.footballmanager.game.ui.screens.NewCareerScreen
 
@@ -22,6 +28,10 @@ class MainActivity : ComponentActivity() {
                         mutableStateOf("home")
                     }
 
+                    var selectedClub by remember {
+                        mutableStateOf<Club?>(null)
+                    }
+
                     when (currentScreen) {
 
                         "home" -> {
@@ -30,7 +40,7 @@ class MainActivity : ComponentActivity() {
                                     currentScreen = "new_career"
                                 },
                                 onLoadGameClick = {
-                                    // Sistema de carregamento será implementado depois.
+                                    // Implementaremos depois.
                                 }
                             )
                         }
@@ -38,7 +48,16 @@ class MainActivity : ComponentActivity() {
                         "new_career" -> {
                             NewCareerScreen(
                                 onContinueClick = {
-                                    // Próxima etapa: escolha do clube.
+                                    currentScreen = "club_selection"
+                                }
+                            )
+                        }
+
+                        "club_selection" -> {
+                            ClubSelectionScreen(
+                                clubs = BrazilianClubs.clubs,
+                                onClubSelected = { club ->
+                                    selectedClub = club
                                 }
                             )
                         }
