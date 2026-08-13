@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.footballmanager.game.data.Manager
 import com.footballmanager.game.data.ManagerStyle
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManagerCreationScreen(
     onContinueClick: (Manager) -> Unit
