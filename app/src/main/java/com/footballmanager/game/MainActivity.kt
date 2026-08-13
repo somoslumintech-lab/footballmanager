@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.*
 import com.footballmanager.game.ui.screens.HomeScreen
+import com.footballmanager.game.ui.screens.NewCareerScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -15,14 +17,32 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface {
-                    HomeScreen(
-                        onNewCareerClick = {
-                            // Vamos implementar a nova carreira depois.
-                        },
-                        onLoadGameClick = {
-                            // Vamos implementar o carregamento depois.
+
+                    var currentScreen by remember {
+                        mutableStateOf("home")
+                    }
+
+                    when (currentScreen) {
+
+                        "home" -> {
+                            HomeScreen(
+                                onNewCareerClick = {
+                                    currentScreen = "new_career"
+                                },
+                                onLoadGameClick = {
+                                    // Sistema de carregamento será implementado depois.
+                                }
+                            )
                         }
-                    )
+
+                        "new_career" -> {
+                            NewCareerScreen(
+                                onContinueClick = {
+                                    // Próxima etapa: escolha do clube.
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }
